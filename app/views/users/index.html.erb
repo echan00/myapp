@@ -1,30 +1,29 @@
-<h3>Users</h3>
-<div class="span8">
-<table class="table table-condensed">
-  <thead>
-    <tr>
-      <th>Username</th>
-      <th>Email</th>
-      <th>Registered</th>
-      <th>Role</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @users.each do |user| %>
-    <tr>
-      <td><%= link_to user.name, user %></td>
-      <td><%= user.email %></td>
-      <td><%= user.created_at.to_date %></td>
-      <td><%= user.roles.first.name.titleize unless user.roles.first.nil? %></td>
-      <td>
-        <a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini" type="button">Change role</a>
-        <%= render user %>
-      </td>
-      <td><%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-</div>
+
+ <%if user_signed_in? %> 
+  if user.has_data
+    * show data
+    * show share
+  else 
+    * ask to install extension
+
+<h3>User</h3>
+<p>User: <%= @user.name %></p>
+<p>Email: <%= @user.email if @user.email %></p>
+<p>This is where we show what apps the user uses</p>
+<ul>
+  <li>App 1</li>
+  <li>App 2</li>
+  <li>App 3</li>
+  <li>App 4</li>
+  <li>App 5</li>
+</ul>
+<br/><br/>
+<div style="background-color: yellow; padding:10px;">If user signed in make them share here: show share url and easy to share twitter/linkedin urls</div>
+
+
+<% else %>
+
+<h3>THIS IS THE FRONT PAGE</h3>
+
+<% end %>
+

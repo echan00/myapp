@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user
   helper_method :user_signed_in?
+  helper_method :user_logged_in?  
   helper_method :correct_user?
 
   private
@@ -14,7 +15,16 @@ class ApplicationController < ActionController::Base
     end
 
     def user_signed_in?
-      return true if current_user
+      return true if current_user else return false
+    end
+
+    def user_logged_in?
+      @user = User.find(params[:id])
+      if current_user == @user
+        return true
+      else
+        return false
+      end
     end
 
     def correct_user?

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131230182214) do
+ActiveRecord::Schema.define(version: 20140107203959) do
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -31,6 +31,19 @@ ActiveRecord::Schema.define(version: 20131230182214) do
     t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "headline"
+    t.string   "location"
+    t.integer  "industry"
+    t.text     "positions",               limit: 2147483647
+    t.string   "public_profile_url"
+    t.datetime "last_modified_timestamp"
+    t.text     "three_current_positions"
+    t.text     "three_past_positions"
+    t.text     "connections",             limit: 2147483647
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "image"
+    t.text     "all_data",                limit: 2147483647
   end
 
   create_table "users_roles", id: false, force: true do |t|

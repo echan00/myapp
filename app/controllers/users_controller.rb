@@ -1,12 +1,18 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :correct_user?, :except => [:index]
+  before_filter :authenticate_user!, :except => [:show, :index]
+  before_filter :correct_user?, :except => [:show, :index]
+  # TODO: ONLY ADMIN CAN SEE /users/index
 
   def index
-    @users = User.all
+    #@users = User.all
+ 
+    if session[:user_id]
+      @current_user ||= User.find(session[:user_id]) 
+      @user = @current_user
+    end
   end
 
-    def edit
+  def edit
     @user = User.find(params[:id])
   end
   
@@ -19,8 +25,7 @@ class UsersController < ApplicationController
     end
   end
 
-
-def show
+  def show
     @user = User.find(params[:id])
   end
 
