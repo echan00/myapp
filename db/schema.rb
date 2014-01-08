@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140108083333) do
+ActiveRecord::Schema.define(version: 20140108103908) do
+
+  create_table "associations", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "associations", ["product_id"], name: "index_associations_on_product_id", using: :btree
+  add_index "associations", ["user_id", "product_id"], name: "index_associations_on_user_id_and_product_id", unique: true, using: :btree
+  add_index "associations", ["user_id"], name: "index_associations_on_user_id", using: :btree
+
+  create_table "products", force: true do |t|
+    t.string   "url"
+    t.string   "name"
+    t.string   "image"
+    t.string   "title"
+    t.integer  "createdby"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", force: true do |t|
     t.string   "name"

@@ -10,13 +10,14 @@ class User < ActiveRecord::Base
                   :skills, :certifications, 
                   :three_current_positions, :three_past_positions,
                   :connections, :all_data, :specialities
-
   validates_presence_of :name
   serialize :all_data
   serialize :connections
   serialize :positions
   serialize :three_current_positions
   serialize :three_past_positions
+  has_many :associations
+  has_many :products, :through => :associations
 
   def self.create_with_omniauth(auth)
     create! do |user|

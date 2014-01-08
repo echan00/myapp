@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     #@users = User.all
     if session[:user_id]
       @current_user ||= User.find(session[:user_id]) 
-      @user = @current_user
+      @user = @current_user    
     else
       redirect_to '/home'
     end
