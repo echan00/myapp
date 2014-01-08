@@ -1,7 +1,7 @@
 Myapp::Application.routes.draw do
 
   root :to => "users#index"
-
+  get 'home', to: 'home#index'
   resources :users, :only => [:index, :show, :edit, :update ]
 
   get '/auth/:provider/callback' => 'sessions#create'

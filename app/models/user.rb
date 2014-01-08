@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
       user.provider = auth['provider']
       user.uid = auth['uid']
 
-      puts ap auth
+      #puts ap auth      use awesome_print to show the hash 'auth'
     
       if auth['info']
          user.name = auth['info']['name'] || ""
@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
          user.industry = auth['info']['industry'] || ""
          user.positions = auth['extra']['raw_info']['positions'] || ""
          user.public_profile_url = auth['info']['urls']['public_profile'] || ""
-         user.last_modified_timestamp = auth['extra']['raw_info']['lastModifiedTimestamp']     
+         user.last_modified_timestamp = auth['extra']['raw_info']['lastModifiedTimestamp']                       
          user.three_current_positions = auth['extra']['raw_info']['threeCurrentPositions'] || ""
          user.three_past_positions = auth['extra']['raw_info']['threePastPositions'] || ""
          user.connections = auth['extra']['raw_info']['connections'] || ""
